@@ -171,7 +171,7 @@ To keep the library agnostic of image libraries, the image is represented simply
 
 If you're using AWT's `BufferedImage`, Copycat provides an extension library to convert between `BufferedImage` and `ClipboardImage`.
 
-![Repository badge](https://maven.deftu.dev/api/badge/latest/releases/dev/deftu/copycat-image-awt?color=C33F3F&name=Copycat)
+![Repository badge](https://maven.deftu.dev/api/badge/latest/releases/dev/deftu/copycat-image-awt?color=C33F3F&name=Copycat+Image+AWT)
 
 <details>
     <summary>Groovy (.gradle)</summary>
