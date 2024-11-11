@@ -22,7 +22,7 @@ rootProject.name = extra["project.name"]?.toString() ?: throw MissingPropertyExc
 include("rust")
 
 
-val osName = OperatingSystem.current().name.lowercase()
+val osName = OperatingSystem.current().familyName.lowercase()
 mapOf(
     "windows" to listOf("x64", "x86"),
     "linux" to listOf("x64", "x86", "arm", "arm64"),

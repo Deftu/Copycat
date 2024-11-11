@@ -47,12 +47,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: 'natives/targets/*/build/libs/*.jar'
+          name: '${{ matrix.platform.name }}-natives.zip'
 
       - name: Create Release
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
-          files: 'natives/targets/*/build/libs/*.jar'
+          files: |
+            natives/targets/*/build/libs/*.jar
           tag_name: ${{ github.sha }}
           body: ${{ github.sha }}
           draft: true

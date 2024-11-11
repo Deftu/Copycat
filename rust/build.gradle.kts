@@ -8,7 +8,7 @@ rust {
     release.set(true)
     cargoInstallTargets.set(true)
 
-    val osName = OperatingSystem.current().name.lowercase()
+    val osName = OperatingSystem.current().familyName.lowercase()
 
     val targetsMap = mapOf(
         "windows" to listOf(
