@@ -19,6 +19,7 @@ tasks {
 
     test {
         useJUnitPlatform()
+        ignoreFailures = System.getenv("IGNORE_TEST_FAILURES") == "true"
     }
 
 }
