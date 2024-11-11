@@ -14,7 +14,7 @@ jobs:
           - name: macos-latest
           - name: ubuntu-22.04
           - name: windows-latest
-    runs-on: ${{ matrix.platform }}
+    runs-on: ${{ matrix.platform.name }}
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
