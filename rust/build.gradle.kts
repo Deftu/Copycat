@@ -21,7 +21,7 @@ rust {
             Pair("arm", "arm-unknown-linux-gnueabihf"),
             Pair("arm64", "aarch64-unknown-linux-gnu"),
         ),
-        "osx" to listOf(
+        "os x" to listOf(
             Pair("x64", "x86_64-apple-darwin"),
             Pair("arm64", "aarch64-apple-darwin"),
         ),
@@ -30,7 +30,7 @@ rust {
     val extensionMap = mapOf(
         "windows" to "dll",
         "linux" to "so",
-        "osx" to "dylib",
+        "os x" to "dylib",
     )
 
     targetsMap[osName]?.forEach { (arch, targetName) ->

@@ -26,6 +26,8 @@ jobs:
         run: |
           echo Updating package list
           sudo apt-get update
+          echo Installing i686 cross compilation packages
+          sudo apt-get install -y gcc-multilib g++-multilib
           echo Installing aarch64 cross compilation packages
           sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
           echo Installing arm cross compilation packages
