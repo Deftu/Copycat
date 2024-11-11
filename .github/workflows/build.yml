@@ -3,6 +3,8 @@ name: Build
 on:
   push:
   workflow_dispatch:
+  release:
+      types: [published]
 
 jobs:
   build:
@@ -27,7 +29,7 @@ jobs:
           echo Installing aarch64 cross compilation packages
           sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
           echo Installing arm cross compilation packages
-          sudo apt-get install -y gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+          sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -40,3 +42,20 @@ jobs:
         env:
           IGNORE_TEST_FAILURES: true
         run: ./gradlew build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: 'natives/targets/*/build/libs/*.jar'
+
+      - name: Create Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: 'natives/targets/*/build/libs/*.jar'
+          tag_name: ${{ github.sha }}
+          body: ${{ github.sha }}
+          draft: true
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

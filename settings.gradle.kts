@@ -20,28 +20,25 @@ rootProject.name = extra["project.name"]?.toString() ?: throw MissingPropertyExc
 
 // Native code
 include("rust")
+
+
+val osName = OperatingSystem.current().name.lowercase()
 mapOf(
     "windows" to listOf("x64", "x86"),
     "linux" to listOf("x64", "x86", "arm", "arm64"),
     "osx" to listOf("x64", "arm64")
-).forEach { (key, arches) ->
+)[osName]?.forEach { arch ->
+    val target = "$osName-$arch"
 
-    if (OperatingSystem.forName(key) != OperatingSystem.current())
-        return@forEach
-
-    arches.forEach { arch ->
-        val target = "$key-$arch"
-
-        include("natives-$target")
-        project(":natives-$target").apply {
-            projectDir = file("natives/targets/$target").apply {
-                if (!exists()) {
-                    mkdirs()
-                }
+    include("natives-$target")
+    project(":natives-$target").apply {
+        projectDir = file("natives/targets/$target").apply {
+            if (!exists()) {
+                mkdirs()
             }
-
-            buildFileName = "../../build.gradle.kts"
         }
+
+        buildFileName = "../../build.gradle.kts"
     }
 }
 

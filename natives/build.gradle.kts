@@ -39,6 +39,8 @@ tasks {
 
         logger.lifecycle("Including $fileName in JAR for ${project.name}")
         include("**/$fileName")
+
+        archiveFileName.set("${rootProject.name}-${project.name}.jar")
     }
 
 }
