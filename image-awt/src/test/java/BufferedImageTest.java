@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class BufferedImageTest {
 
-    @Test
+//    @Test
     public void bufferedClipboardImageTest() throws IOException {
         Clipboard clipboard = Clipboard.getInstance();
 
@@ -21,6 +21,7 @@ public class BufferedImageTest {
     }
 
     private File testFile() {
+        // TODO: Better test samples
         return Path.of("D:\\GNfWhcCXcAEYpnW.jpg").toFile();
     }
 
