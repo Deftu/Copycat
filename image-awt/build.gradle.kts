@@ -17,9 +17,9 @@ dependencies {
 
 tasks {
 
-//    test {
-//        useJUnitPlatform()
-//        ignoreFailures = System.getenv("CI") == "true"
-//    }
+    test {
+        useJUnitPlatform()
+        ignoreFailures = System.getenv("CI") == "true"
+    }
 
 }
