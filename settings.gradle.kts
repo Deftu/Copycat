@@ -26,8 +26,8 @@ listOf(
     "linux-x86",
     "linux-arm",
     "linux-arm64",
-    // "macos-x64",
-    // "macos-arm64"
+     "macos-x64",
+     "macos-arm64"
 ).forEach { target ->
     include("natives-$target")
     project(":natives-$target").apply {
