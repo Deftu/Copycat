@@ -12,6 +12,10 @@ on:
           - Snapshots
           - Releases
 
+env:
+  MAVEN_USER: ${{ secrets.MAVEN_USER }}
+  MAVEN_PASS: ${{ secrets.MAVEN_PASS }}
+
 jobs:
   build:
     name: Release
@@ -50,4 +54,4 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Publish with Gradle
-        run: ./gradlew publishNativesToDeftu${{ inputs.repository }}Repository
+        run: ./gradlew publishNativesToDeftu${{ inputs.repository }}Repository -Pdeftu.publishing.username=${{ secrets.MAVEN_USER }} -Pdeftu.publishing.password=${{ secrets.MAVEN_PASS }}
