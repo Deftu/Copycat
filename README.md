@@ -44,7 +44,9 @@ implementation "dev.deftu:copycat:<VERSION>"
     "linux-x64",
     "linux-x86",
     "linux-arm",
-    "linux-arm64"
+    "linux-arm64",
+    "os-x-x64",
+    "os-x-arm64"
 ].forEach { target ->
     runtimeOnly "dev.deftu:copycat-natives-$target:<VERSION>"
 }
@@ -63,7 +65,9 @@ listOf(
     "linux-x64",
     "linux-x86",
     "linux-arm",
-    "linux-arm64"
+    "linux-arm64",
+    "os-x-x64",
+    "os-x-arm64"
 ).forEach { target ->
     runtimeOnly("dev.deftu:copycat-natives-$target:<VERSION>")
 }
@@ -79,6 +83,8 @@ listOf(
 - Linux x86
 - Linux ARM (Android)
 - Linux ARM64 (Android)
+- macOS x64 (Intel)
+- macOS ARM64 (Apple Silicon)
 
 macOS is not supported at this time due to the inability to build the native library.
 
