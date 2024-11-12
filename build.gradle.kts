@@ -31,7 +31,7 @@ tasks {
         register("publishNativesTo${repository}Repository") {
             group = "publishing"
 
-            val osName = OperatingSystem.current().familyName.lowercase()
+            val osName = OperatingSystem.current().familyName.lowercase().replace(" ", "-")
             mapOf(
                 "windows" to listOf("x64", "x86"),
                 "linux" to listOf("x64", "x86", "arm", "arm64"),
