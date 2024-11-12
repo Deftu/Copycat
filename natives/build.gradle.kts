@@ -31,7 +31,7 @@ tasks {
         val fileExtension = when (os) {
             "windows" -> "dll"
             "linux" -> "so"
-            "os x" -> "dylib"
+            "os-x" -> "dylib"
             else -> throw IllegalArgumentException("Unknown OS: $os")
         }
 
