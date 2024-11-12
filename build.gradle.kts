@@ -25,8 +25,8 @@ tasks {
     }
 
     setOf(
-        "Releases",
-        "Snapshots"
+        "DeftuReleases",
+        "DeftuSnapshots"
     ).forEach { repository ->
         register("publishNativesTo${repository}Repository") {
             group = "publishing"
