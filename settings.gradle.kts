@@ -1,4 +1,5 @@
 import groovy.lang.MissingPropertyException
+import org.gradle.internal.os.OperatingSystem
 
 pluginManagement {
     repositories {
@@ -19,16 +20,16 @@ rootProject.name = extra["project.name"]?.toString() ?: throw MissingPropertyExc
 
 // Native code
 include("rust")
-listOf(
-    "windows-x64",
-    "windows-x86",
-    "linux-x64",
-    "linux-x86",
-    "linux-arm",
-    "linux-arm64",
-    // "macos-x64",
-    // "macos-arm64"
-).forEach { target ->
+
+
+val osName = OperatingSystem.current().familyName.lowercase()
+mapOf(
+    "windows" to listOf("x64", "x86"),
+    "linux" to listOf("x64", "x86", "arm", "arm64"),
+    "os x" to listOf("x64", "arm64")
+)[osName]?.forEach { arch ->
+    val target = "$osName-$arch"
+
     include("natives-$target")
     project(":natives-$target").apply {
         projectDir = file("natives/targets/$target").apply {

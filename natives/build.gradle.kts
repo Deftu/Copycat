@@ -31,7 +31,7 @@ tasks {
         val fileExtension = when (os) {
             "windows" -> "dll"
             "linux" -> "so"
-            "macos" -> "dylib"
+            "os x" -> "dylib"
             else -> throw IllegalArgumentException("Unknown OS: $os")
         }
 
@@ -39,6 +39,8 @@ tasks {
 
         logger.lifecycle("Including $fileName in JAR for ${project.name}")
         include("**/$fileName")
+
+        archiveFileName.set("${rootProject.name}-${project.name}.jar")
     }
 
 }
