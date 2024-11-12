@@ -1,3 +1,5 @@
+import org.gradle.internal.os.OperatingSystem
+
 plugins {
     java
     val dgtVersion = "2.4.1"
@@ -20,6 +22,24 @@ tasks {
     test {
         useJUnitPlatform()
         ignoreFailures = System.getenv("CI") == "true"
+    }
+
+    setOf(
+        "Releases",
+        "Snapshots"
+    ).forEach { repository ->
+        register("publishNativesTo${repository}Repository") {
+            val osName = OperatingSystem.current().familyName.lowercase()
+            mapOf(
+                "windows" to listOf("x64", "x86"),
+                "linux" to listOf("x64", "x86", "arm", "arm64"),
+                "os x" to listOf("x64", "arm64")
+            )[osName]?.forEach { arch ->
+                val target = "$osName-$arch"
+
+                dependsOn(":natives-$target:publishTo${repository}Repository")
+            }
+        }
     }
 
 }
