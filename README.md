@@ -45,8 +45,8 @@ implementation "dev.deftu:copycat:<VERSION>"
     "linux-x86",
     "linux-arm",
     "linux-arm64",
-    "os-x-x64",
-    "os-x-arm64"
+    "osx-x64",
+    "osx-arm64"
 ].forEach { target ->
     runtimeOnly "dev.deftu:copycat-natives-$target:<VERSION>"
 }
