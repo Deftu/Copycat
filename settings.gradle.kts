@@ -22,11 +22,11 @@ rootProject.name = extra["project.name"]?.toString() ?: throw MissingPropertyExc
 include("rust")
 
 
-val osName = OperatingSystem.current().familyName.lowercase().replace(" ", "-")
+val osName = OperatingSystem.current().familyName.lowercase().replace(" ", "")
 mapOf(
     "windows" to listOf("x64", "x86"),
     "linux" to listOf("x64", "x86", "arm", "arm64"),
-    "os-x" to listOf("x64", "arm64")
+    "osx" to listOf("x64", "arm64")
 )[osName]?.forEach { arch ->
     val target = "$osName-$arch"
 
