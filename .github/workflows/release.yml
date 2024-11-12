@@ -1,0 +1,53 @@
+name: Release to Maven repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Repository'
+        required: true
+        default: 'Snapshots'
+        type: choice
+        options:
+          - Snapshots
+          - Releases
+
+jobs:
+  build:
+    name: Release
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - name: macos-latest
+            pretty: macos
+          - name: ubuntu-22.04
+            pretty: linux
+          - name: windows-latest
+            pretty: windows
+    runs-on: ${{ matrix.platform.name }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup Linux Cross Compilation
+        if: startsWith(matrix.platform.name, 'ubuntu')
+        run: |
+          echo Updating package list
+          sudo apt-get update
+          echo Installing i686 cross compilation packages
+          sudo apt-get install -y gcc-multilib g++-multilib
+          echo Installing aarch64 cross compilation packages
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+          echo Installing arm cross compilation packages
+          sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Publish with Gradle
+        run: ./gradlew publishNativesToDeftu${{ inputs.repository }}Repository
