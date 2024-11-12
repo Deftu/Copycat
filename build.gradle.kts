@@ -29,6 +29,8 @@ tasks {
         "Snapshots"
     ).forEach { repository ->
         register("publishNativesTo${repository}Repository") {
+            group = "publishing"
+
             val osName = OperatingSystem.current().familyName.lowercase()
             mapOf(
                 "windows" to listOf("x64", "x86"),
@@ -37,7 +39,7 @@ tasks {
             )[osName]?.forEach { arch ->
                 val target = "$osName-$arch"
 
-                dependsOn(":natives-$target:publishTo${repository}Repository")
+                dependsOn(":natives-$target:publishAllPublicationsTo${repository}Repository")
             }
         }
     }
