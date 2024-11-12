@@ -27,13 +27,14 @@ rust {
         ),
     )
 
-    val extensionMap = mapOf(
-        "windows" to "dll",
-        "linux" to "so",
-        "os x" to "dylib",
+    val prefixSuffixMap = mapOf(
+        "windows" to ("" to "dll"),
+        "linux" to ("lib" to "so"),
+        "os x" to ("lib" to "dylib"),
     )
 
     targetsMap[osName]?.forEach { (arch, targetName) ->
-        targets += target(targetName, "lib${rootProject.name}-${arch}.${extensionMap[osName]}")
+        val (prefix, suffix) = prefixSuffixMap[osName] ?: throw IllegalArgumentException("Unknown OS: $osName")
+        targets += target(targetName, "$prefix${rootProject.name}-${arch}.$suffix")
     }
 }
