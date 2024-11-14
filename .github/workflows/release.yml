@@ -46,7 +46,13 @@ jobs:
           echo Installing arm cross compilation packages
           sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 
-      - name: Setup Java
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Java 8
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
