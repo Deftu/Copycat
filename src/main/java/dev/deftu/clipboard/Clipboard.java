@@ -156,7 +156,7 @@ public class Clipboard {
             return;
         }
 
-        String decodedPath = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8);
+        String decodedPath = URLDecoder.decode(url.getPath(), "UTF-8");
         Path path;
 
         if (decodedPath.startsWith("/")) {
