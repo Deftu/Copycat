@@ -2,7 +2,7 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
     java
-    val dgtVersion = "2.4.1"
+    val dgtVersion = "2.19.1"
     id("dev.deftu.gradle.tools") version (dgtVersion)
     id("dev.deftu.gradle.tools.publishing.maven") version (dgtVersion)
 }

@@ -54,12 +54,12 @@ public class ClipboardNative {
      */
     private static String getArchitecturalSuffix() {
         String osArch = System.getProperty("os.arch");
-        if (osArch.contains("64")) {
-            return "x64";
+        if (osArch.contains("arm64")) {
+            return "arm64";
         } else if (osArch.contains("86")) {
             return "x86";
-        } else if (osArch.contains("arm64")) {
-            return "arm64";
+        } else if (osArch.contains("64")) {
+            return "x64";
         } else {
             throw new UnsupportedOperationException("Unsupported architecture: " + osArch);
         }
