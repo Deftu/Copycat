@@ -54,7 +54,7 @@ public class ClipboardNative {
      */
     private static String getArchitecturalSuffix() {
         String osArch = System.getProperty("os.arch");
-        if (osArch.contains("arm64")) {
+        if (osArch.contains("arm64") || osArch.contains("aarch64")) {
             return "arm64";
         } else if (osArch.contains("86")) {
             return "x86";
