@@ -86,8 +86,6 @@ listOf(
 - macOS x64 (Intel)
 - macOS ARM64 (Apple Silicon)
 
-macOS is not supported at this time due to the inability to build the native library.
-
 ### Interacting with the clipboard
 
 A user-facing API is provided via `dev.deftu.clipboard.Clipboard`, pointing to the native methods provided by the native library by default.
